@@ -1,13 +1,26 @@
 import requests
 import json
 
-def GithubApi(username):
-    userData = requests.get("https://api.github.com/users/"+ username +"/repos")
-    userData = userData.json()
-    print(userData)
 
+def getRepo(username):
+    response = requests.get(
+        "https://api.github.com/users/" + username + "/repos")
+
+    response = response.json()
+
+    if len(response) == 0:
+        print("No Repos Found")
+        return False
+
+    for repo in response:
+        repoResponse = requests.get(repo['commits_url'].split("{")[0])
+        repoResponse = repoResponse.json()
+        print("Name of Repo: " +
+              repo['name'] + " \n Number of commits: " + str(len(repoResponse)))
+
+    return True
 
 
 if __name__ == "__main__":
     userInput = input("Enter Github Username: ")
-    GithubApi(userInput)
+    getRepo(userInput)
