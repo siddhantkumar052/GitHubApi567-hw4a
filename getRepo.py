@@ -1,3 +1,11 @@
+"""
+Name: Siddhantkumar Maske
+Cwid:20006862
+Subject: SSW 567
+HW 04a Homework 04a - Develop with the Perspective of the Tester in mind
+"""
+
+
 import requests
 import json
 
