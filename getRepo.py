@@ -1,11 +1,13 @@
 import requests
-from pprint import pprint
+import json
 
-# github username
-username = "x4nth055"
-# url to request
-url = f"https://api.github.com/users/{username}"
-# make the request and return the json
-user_data = requests.get(url).json()
-# pretty print JSON data
-pprint(user_data)
+def GithubApi(username):
+    userData = requests.get("https://api.github.com/users/"+ username +"/repos")
+    userData = userData.json()
+    print(userData)
+
+
+
+if __name__ == "__main__":
+    userInput = input("Enter Github Username: ")
+    GithubApi(userInput)
